@@ -1,24 +1,21 @@
 <script lang="ts">
-	import Nav from '../components/Nav.svelte'
+    import Header from "../components/Header.svelte";
 </script>
 
 <style>
-	main {
-		position: relative;
-		max-width: 56rem;
-		background-color: white;
-		padding: 2rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+    main {
+        height: 100%;
+        margin-top: 3rem;
+        background-color: var(--color-background);
+    }
 </style>
 
 <svelte:head>
     <title>Player list UI</title>
 </svelte:head>
 
-<Nav />
+<Header/>
 
 <main>
-	<slot></slot>
+    <slot></slot>
 </main>
