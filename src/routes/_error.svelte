@@ -1,40 +1,37 @@
 <script lang="ts">
-	export let status: number
-	export let error: Error
+    export let status: number
+    export let error: Error
 
-	const dev = process.env.NODE_ENV === "development"
+    const dev = process.env.NODE_ENV === "development"
 </script>
 
-<style>
-	h1, p {
-		margin: 0 auto;
-	}
+<style lang="scss">
+  .error-page {
+    display: flex;
+    height: calc(100vh - 3rem);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text);
 
-	h1 {
-		font-size: 2.8em;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+    &__title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: var(--margin-md);
+    }
+  }
 </style>
 
 <svelte:head>
-	<title>{status}</title>
+    <title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<div class="error-page">
+    <h1 class="error-page__title">{status}</h1>
 
-<p>{error.message}</p>
+    <p>{error.message}</p>
+</div>
 
 {#if dev && error.stack}
-	<pre>{error.stack}</pre>
+    <pre>{error.stack}</pre>
 {/if}

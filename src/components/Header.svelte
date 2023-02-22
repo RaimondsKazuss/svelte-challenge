@@ -30,7 +30,9 @@
 
 <header>
     <div class="header-content-wrapper">
-        <img src="/football.svg" alt="football">
+        <a href="/">
+            <img src="/football.svg" alt="football">
+        </a>
         <Button on:click={setEditingState}>
             add player
         </Button>
