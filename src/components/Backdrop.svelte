@@ -1,3 +1,13 @@
+<script lang="ts">
+    import {isModalOpen} from "../stores";
+
+    let isOpen: boolean;
+
+    isModalOpen.subscribe(value => {
+        isOpen = value;
+    });
+</script>
+
 <style lang="scss">
   .backdrop {
     position: absolute;
@@ -8,8 +18,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 30;
-    background: rgba(38, 35, 35, 0.7);
+    z-index: var(--zIndex-modal);
+    background: rgba(34, 34, 34, 0.3);
+    backdrop-filter: blur(1px);
   }
 </style>
 

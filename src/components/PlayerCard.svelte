@@ -1,7 +1,25 @@
-<script>
+<script lang="ts">
     import Button from "./Button.svelte";
+    import {isEditing, isModalOpen} from "../stores";
+    import type {Player} from "../interfaces";
+    import Modal from "./Modal.svelte";
 
-    export let player
+    export let player: Player
+    let modalOpen: boolean = false;
+
+    const openEditForm = (): void => {
+        isEditing.update(isEditing => !isEditing)
+    }
+
+    const toggleConfirm = (): void => {
+        isModalOpen.update(isModalOpen => !isModalOpen)
+        //TODO: implement player delete functionality
+    }
+
+
+    isModalOpen.subscribe(value => {
+        modalOpen = value;
+    });
 </script>
 
 <style lang="scss">
@@ -77,6 +95,20 @@
   }
 </style>
 
+{#if modalOpen}
+    <Modal>
+        <div class="modal__text">Are you sure you want to delete this player?</div>
+        <div class="modal__buttons">
+            <Button btnType="wide" on:click={toggleConfirm}>
+                cancel
+            </Button>
+            <Button btnType="wide" on:click={toggleConfirm}>
+                confirm
+            </Button>
+        </div>
+    </Modal>
+{/if}
+
 <div class="player-card">
     <img
             class="player-card__image"
@@ -101,12 +133,10 @@
     <hr class="player-card__divider">
 
     <div class="player-card__buttons">
-        <!--            <button on:click={() => deletePlayer(player.id)}>-->
-        <Button btnType="red wide" on:click={() => {}}>
+        <Button btnType="red wide" on:click={toggleConfirm}>
             Delete
         </Button>
-        <!--            <button on:click={() => selectedPlayer = player}>-->
-        <Button btnType="wide" on:click={() => {}}>
+        <Button btnType="wide" on:click={openEditForm}>
             Edit
         </Button>
     </div>

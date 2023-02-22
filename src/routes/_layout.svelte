@@ -4,7 +4,7 @@
 
 <style>
     main {
-        height: 100%;
+        min-height: 100%;
         margin-top: 3rem;
         background-color: var(--color-background);
     }

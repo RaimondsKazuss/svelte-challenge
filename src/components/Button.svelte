@@ -51,7 +51,7 @@
   }
 </style>
 
-<button class="button {btnType}">
+<button class="button {btnType}" on:click>
     <slot></slot>
 </button>
 

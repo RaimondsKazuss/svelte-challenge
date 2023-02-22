@@ -2,6 +2,7 @@
     import type {Player, Position} from "../interfaces"
     import {toPosition, readFileAsBase64} from "../utils"
     import Button from "./Button.svelte";
+    import {isEditing} from "../stores";
 
     export let id: string
     export let name: string = ""
@@ -20,8 +21,10 @@
         goals,
     }
 
-    export let onClose: () => void
-    export let submitPlayer: (p: Player) => Promise<any>
+    const closeForm = () => {
+        isEditing.update(n => !n)
+    }
+    // export let submitPlayer: (p: Player) => Promise<any>
 
 </script>
 
@@ -85,11 +88,6 @@
         object-fit: cover;
         margin: 0 auto var(--margin-sm);
       }
-
-      //svg {
-      //  width: 64px;
-      //  height: 64px;
-      //}
     }
 
     &__buttons {
@@ -212,17 +210,14 @@
         </div>
     </div>
     <div class="form__buttons">
+        <Button btnType="red wide" on:click={closeForm}>
+            Close
+        </Button>
         <Button btnType="wide" on:click={() => {
             // TODO: implement the "Add player" functionality
             throw new Error("Missing implementation for Add player")
         }}>
             Submit
-        </Button>
-        <Button btnType="red wide" on:click={e => {
-            e.preventDefault()
-            onClose()
-        }}>
-            Close
         </Button>
     </div>
 </div>

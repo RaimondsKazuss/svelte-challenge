@@ -1,5 +1,10 @@
 <script>
     import Button from "./Button.svelte";
+    import {isEditing} from '../stores'
+
+    const setEditingState = () => {
+        isEditing.set(true)
+    }
 </script>
 
 <style>
@@ -15,7 +20,7 @@
     }
 
     .header-content-wrapper {
-        max-width: 64rem;
+        max-width: 62rem;
         margin: auto;
         display: flex;
         justify-content: space-between;
@@ -26,11 +31,8 @@
 <header>
     <div class="header-content-wrapper">
         <img src="/football.svg" alt="football">
-        <!--TODO: trigger state change on btn click-->
-        <!--    <Button id="add-player" on:click={() => isEditing = !isEditing}>-->
-        <Button id="add-player" on:click={() => {}}>
+        <Button on:click={setEditingState}>
             add player
         </Button>
     </div>
-
 </header>

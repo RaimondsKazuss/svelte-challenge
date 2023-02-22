@@ -2,7 +2,7 @@
     import type {Player} from "../interfaces"
     import PlayerForm from "../components/PlayerForm.svelte"
 
-    export let submitPlayer: (p: Player) => Promise<any>
+    // export let submitPlayer: (p: Player) => Promise<any>
     export let player: Partial<Player>
 
     let editingPlayer: Player | undefined
